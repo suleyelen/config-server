@@ -1,0 +1,28 @@
+eureka:
+  client:
+    registryFetchIntervalSeconds: 5
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+    metadata-map:
+      startup: ${random.int}
+    
+spring:
+  zipkin:
+    base-url: ${ZIPKIN_SERVER_URL:http://localhost:9411}
+    
+  #admin server configurasyonu
+  boot:
+    admin:
+      client:
+        url: ${SPRING_BOOT_ADMIN_SERVER_URL:http://localhost:9000}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
